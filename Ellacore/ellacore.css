@@ -1,0 +1,296 @@
+:root {
+  --barbie-hot: #ff1493;
+  --barbie-soft: #ffb7d5;
+  --text-white: #ffffff;
+  --glass-tint: rgba(255, 20, 147, 0.25);
+  --border-light: rgba(255, 255, 255, 0.3);
+  --glow: 0 0 15px rgba(255, 20, 147, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "caught", "Montserrat", sans-serif;
+  background-color: #1a0510;
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- BACKGROUND SYSTEM --- */
+#bg1,
+#bg2 {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  transition: opacity 2s ease-in-out;
+}
+
+#bg1 {
+  opacity: 1;
+}
+#bg2 {
+  opacity: 0;
+}
+
+.background-blur {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(11px) brightness(40%);
+  -webkit-backdrop-filter: blur(11px) brightness(40%);
+  z-index: -1;
+}
+
+/* --- MAIN DASHBOARD --- */
+.dashboard {
+  width: 90vw;
+  max-width: 1000px;
+  min-height: 500px;
+  background: var(--glass-tint);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  padding: 40px;
+  align-items: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  position: relative;
+}
+
+/* --- IDENTITY (LEFT) --- */
+.identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  padding-right: 40px;
+}
+
+.monogram {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  border: 3px solid var(--barbie-soft);
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 0 20px var(--barbie-hot);
+  overflow: visible !important;
+}
+
+.monogram svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.title {
+  font-size: 38px;
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--barbie-hot);
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--barbie-soft);
+  margin-bottom: 30px;
+}
+
+.meta {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 12px;
+  width: 100%;
+  border: 1px solid rgba(255, 20, 147, 0.3);
+}
+
+.time {
+  font-size: 26px;
+  font-weight: 700;
+}
+.weather {
+  font-size: 12px;
+  color: var(--barbie-soft);
+  margin-top: 4px;
+}
+
+/* --- LINKS (RIGHT) --- */
+.card h2 {
+  font-size: 24px;
+  font-style: italic;
+  color: var(--barbie-soft);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card h2::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--barbie-hot), transparent);
+}
+
+.rotated-heart {
+    display: inline-block; /* Required for rotation to work */
+    transform: rotate(-90deg); /* Tilts the heart to face the line */
+    font-style: normal; /* Ensures it doesn't lean if the H2 is italic */
+    font-size: 0.9em; /* Slightly adjusts size to match text height */
+    color: var(--barbie-soft);
+    line-height: 1;
+}
+
+.links-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.btn {
+  position: relative;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 14px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  overflow: visible !important;
+}
+
+.btn:hover {
+    /* 0.8 makes it 80% opaque, so 20% transparent */
+    background: rgba(255, 20, 147, 0.8); 
+    box-shadow: var(--glow);
+    border-color: var(--barbie-soft);
+    transform: translateY(-3px) scale(1.03);
+    color: white;
+}
+
+/* --- LOGO-STYLE REFINED SPARKLES --- */
+.sparkle-fx {
+  position: absolute;
+  background: white;
+  clip-path: polygon(
+    50% 0%,
+    61% 39%,
+    100% 50%,
+    61% 61%,
+    50% 100%,
+    39% 61%,
+    0% 50%,
+    39% 39%
+  );
+  pointer-events: none;
+  z-index: 1000;
+  animation: sparkle-twinkle 1.5s ease-in-out forwards;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes sparkle-twinkle {
+  0% {
+    transform: translate(0, 0) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(0.8) rotate(45deg);
+  }
+  100% {
+    transform: translate(var(--x2), var(--y2)) scale(0) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* --- HEARTS BAR --- */
+.hearts-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hearts-target .particle {
+  position: absolute;
+  bottom: -10px;
+  background: var(--barbie-soft);
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: hearts-rise 3.5s linear infinite;
+}
+
+.hearts-target .particle::before,
+.hearts-target .particle::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 50%;
+}
+.hearts-target .particle::before {
+  top: -50%;
+}
+.hearts-target .particle::after {
+  left: -50%;
+}
+
+@keyframes hearts-rise {
+  0% {
+    transform: translateY(0) scale(0.6) rotate(45deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(var(--x, 0px), -100px) scale(1) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 850px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    padding: 20px;
+  }
+  .dashboard {
+    grid-template-columns: 1fr;
+    padding: 25px;
+  }
+  .identity {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 0 20px 0;
+  }
+}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Ellacore ⋆˚✿˖°</title>
+        <link rel="icon" sizes="any" type="image/webp" href="Ella/Ella8.webp">
+        <link rel="stylesheet" href="ellacore.css" />
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div id="bg1"></div>
+        <div id="bg2"></div>
+        <div class="background-blur"></div>
+
+        <main class="dashboard">
+            <aside class="identity">
+                <div class="monogram">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img">
+                        <defs>
+                            <linearGradient id="pGrad" x1="0" x2="1" y1="0" y2="1">
+                                <stop offset="0%" stop-color="#ff69b4" />
+                                <stop offset="100%" stop-color="#ff1493" />
+                            </linearGradient>
+                            <mask id="circleMask">
+                                <rect width="100%" height="100%" fill="black" />
+                                <circle cx="100" cy="100" r="84" fill="white" />
+                            </mask>
+                        </defs>
+                        <circle cx="100" cy="100" r="86" fill="none" stroke="url(#pGrad)" stroke-width="4" />
+                        <circle cx="100" cy="100" r="75" fill="none" stroke="white" stroke-width="1" opacity="0.5" />
+                        <g mask="url(#circleMask)">
+                            <image href="Ella/Ella.webp" x="16" y="16" width="168" height="168" preserveAspectRatio="xMidYMid slice" />
+                            <circle cx="100" cy="100" r="84" fill="url(#pGrad)" opacity="0.06" />
+                        </g>
+                    </svg>
+                </div>
+
+                <h1 class="title">Ellacore</h1>
+                <div class="subtitle">♥︎ Ella &bull; Louise &bull; Glover ♥︎</div>
+
+
+                <div class="meta">
+                    <div id="time" class="time">12:00</div>
+                    <div id="weather" class="weather">Loading weather...</div>
+                </div>
+            </aside>
+
+            <div class="grid-container">
+                <section class="card">
+                    <h2>Ella Louise Glover <span class="rotated-heart">♥︎</span><span class="rotated-heart">♡</span><span class="rotated-heart">♥︎</span><span class="rotated-heart">♡</span><span class="rotated-heart">♥︎</span></h2>
+                    <div class="links-list">
+                        <a href="https://www.instagram.com/ellalouisegloverxx/" class="btn" target="_blank">Instagram</a>
+                        <a href="https://www.tiktok.com/@ellalouiseglover" class="btn" target="_blank">TikTok</a>
+                        <a href="https://www.facebook.com/profile.php?id=61572906027044" class="btn" target="_blank">Facebook</a>
+                        <a href="https://www.snapchat.com/@ellalougloverxo" class="btn" target="_blank">Snapchat</a>
+                        <a href="https://www.instagram.com/bronzedbratzbabez_/" class="btn" target="_blank">Bronzed Bratz</a>
+                        <a href="https://www.instagram.com/dollz_lengthz/" class="btn" target="_blank">Dollz Lengthz</a>
+                        <a href="https://www.instagram.com/bratz_lashezbyell/" class="btn" target="_blank">Bratz Lashez</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <div class="hearts-bar hearts-target"></div>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const interactiveElements = document.querySelectorAll(".btn, .monogram");
+    
+          interactiveElements.forEach((el) => {
+            let sparkleInterval;
+    
+            el.addEventListener("mouseenter", () => {
+              // Initial small glint
+              for (let i = 0; i < 3; i++) createSparkle(el);
+              // Steady elegant shimmer
+              sparkleInterval = setInterval(() => createSparkle(el), 150);
+            });
+    
+            el.addEventListener("mouseleave", () => {
+              clearInterval(sparkleInterval);
+            });
+          });
+    
+          function createSparkle(target) {
+            const sparkle = document.createElement("div");
+            sparkle.classList.add("sparkle-fx");
+    
+            // Tiny logo-style sizing (4px to 8px)
+            const size = Math.random() * 4 + 4;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+    
+            // Random spot inside the button/monogram
+            sparkle.style.left = Math.random() * 100 + "%";
+            sparkle.style.top = Math.random() * 100 + "%";
+    
+            // Gentle drift variables
+            sparkle.style.setProperty("--x", `${(Math.random() - 0.5) * 20}px`);
+            sparkle.style.setProperty("--y", `${(Math.random() - 0.5) * 20}px`);
+            sparkle.style.setProperty("--x2", `${(Math.random() - 0.5) * 40}px`);
+            sparkle.style.setProperty("--y2", `${(Math.random() - 0.5) * 40}px`);
+    
+            target.appendChild(sparkle);
+    
+            // Matches the 1.5s CSS animation duration
+            setTimeout(() => sparkle.remove(), 1500);
+          }
+        });
+      </script>
+    
+      <script src="background_alt.js"></script>
+      <script src="logo.js"></script>
+      <script src="weather.js"></script>
+    </body>
